@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL maintainer="Kevin Pirnie <me@kpirnie.com>"
 
-# System settings. User normally shouldn't change these parameters
+# System settings
 ENV APP_NAME emagineovpn
 ENV APP_INSTALL_PATH /opt/${APP_NAME}
 ENV APP_PERSIST_DIR /opt/${APP_NAME}_data
@@ -17,7 +17,6 @@ WORKDIR ${APP_INSTALL_PATH}
 
 COPY scripts .
 COPY config ./config
-COPY VERSION ./config
 
 RUN apk add --no-cache openvpn easy-rsa bash netcat-openbsd zip dumb-init && \
     ln -s /usr/share/easy-rsa/easyrsa /usr/bin/easyrsa && \
