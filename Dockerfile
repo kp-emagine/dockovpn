@@ -1,9 +1,9 @@
-FROM alpine:3.14.1
+FROM alpine:latest
 
-LABEL maintainer="Alexander Litvinenko <array.shift@yahoo.com>"
+LABEL maintainer="Kevin Pirnie <me@kpirnie.com>"
 
 # System settings. User normally shouldn't change these parameters
-ENV APP_NAME Dockovpn
+ENV APP_NAME emagineovpn
 ENV APP_INSTALL_PATH /opt/${APP_NAME}
 ENV APP_PERSIST_DIR /opt/${APP_NAME}_data
 
@@ -36,7 +36,7 @@ RUN apk add --no-cache openvpn easy-rsa bash netcat-openbsd zip dumb-init && \
 EXPOSE 1194/udp
 EXPOSE 8080/tcp
 
-VOLUME [ "/opt/Dockovpn_data" ]
+VOLUME [ "${APP_PERSIST_DIR}" ]
 
 ENTRYPOINT [ "dumb-init", "./start.sh" ]
 CMD [ "" ]
